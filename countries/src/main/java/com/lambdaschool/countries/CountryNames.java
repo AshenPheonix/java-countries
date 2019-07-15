@@ -13,14 +13,16 @@ import java.util.ArrayList;
 @RequestMapping("/names")
 public class CountryNames extends AbstractCountries{
 
-    @GetMapping("/all")
+    @GetMapping(value="/all",
+                produces={"application/json"})
     public ResponseEntity<?> getAll(){
         ArrayList<Country> temp=list.getCountryList();
         temp.sort((Country c1, Country c2)-> c1.getName().compareToIgnoreCase(c2.getName()));
         System.out.println("okay");
         return new ResponseEntity<>(temp, HttpStatus.OK);
     }
-    @GetMapping("/start/{letter}")
+    @GetMapping(value="/start/{letter}",
+                produces={"application/json"})
     public ResponseEntity<?> getNameStart(@PathVariable String letter){
         ArrayList<Country> temp=list.getCountryList();
 
@@ -28,7 +30,8 @@ public class CountryNames extends AbstractCountries{
         return new ResponseEntity<>(temp,HttpStatus.OK);
     }
 
-    @GetMapping("/size/{number}")
+    @GetMapping(value = "/size/{number}",
+                produces={"application/json"})
     public ResponseEntity<?> getNameSize(@PathVariable int number){
         ArrayList<Country> temp=list.getCountryList();
 

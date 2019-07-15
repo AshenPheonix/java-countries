@@ -20,21 +20,24 @@ public class CountriesAge extends AbstractCountries {
         return new ResponseEntity<>(temp,HttpStatus.OK);
     }
 
-    @RequestMapping("/min")
+    @RequestMapping(value = "/min",
+                    produces={"application/json"})
     public ResponseEntity<?> getMinMedianAge(){
         ArrayList<Country> temp=list.getCountryList();
         temp.sort(Comparator.comparingInt(Country::getMedian_age));
         return new ResponseEntity<>(temp.get(0),HttpStatus.OK);
     }
 
-    @RequestMapping("/max")
+    @RequestMapping(value="/max",
+                    produces={"application/json"})
     public ResponseEntity<?> getMaxMedianAge(){
         ArrayList<Country> temp=list.getCountryList();
         temp.sort(Comparator.comparingInt(Country::getMedian_age));
         return new ResponseEntity<>(temp.get(temp.size()-1), HttpStatus.OK);
     }
 
-    @RequestMapping("/median")
+    @RequestMapping(value = "/median",
+                    produces={"application/json"})
     public ResponseEntity<?> getMedianMedianAge(){
         ArrayList<Country> temp=list.getCountryList();
         temp.sort(Comparator.comparingInt(Country::getMedian_age));

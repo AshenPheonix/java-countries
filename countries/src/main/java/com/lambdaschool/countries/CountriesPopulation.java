@@ -12,14 +12,16 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping("/population")
 public class CountriesPopulation extends AbstractCountries {
-    @GetMapping("/size/{people}")
+    @GetMapping(value = "/size/{people}",
+                produces={"application/json"})
     public ResponseEntity<?> getPopulationGreater(@PathVariable int people){
         ArrayList<Country> temp=list.getCountryList();
         temp.removeIf(country -> (int)country.getSize()<people);
         return new ResponseEntity<>(temp, HttpStatus.OK);
     }
 
-    @GetMapping("/min")
+    @GetMapping(value = "/min",
+                produces={"application/json"})
     public ResponseEntity<?> getMin(){
         ArrayList<Country> temp=list.getCountryList();
 
@@ -27,14 +29,16 @@ public class CountriesPopulation extends AbstractCountries {
         return new ResponseEntity<>(temp.get(0), HttpStatus.OK);
     }
 
-    @GetMapping("/max")
+    @GetMapping(value = "/max",
+                produces={"application/json"})
     public ResponseEntity<?> getMax(){
         ArrayList<Country> temp=list.getCountryList();
         temp.sort((Country c1, Country c2)->(int)(c2.getPopulation()-c1.getPopulation()));
         return new ResponseEntity<>(temp.get(0),HttpStatus.OK);
     }
 
-    @GetMapping("/median")
+    @GetMapping(value = "/median",
+                produces={"application/json"})
     public ResponseEntity<?> getMedian(){
         ArrayList<Country> temp=list.getCountryList();
         temp.sort((Country c1, Country c2)->(int)(c1.getPopulation()-c2.getPopulation()));
