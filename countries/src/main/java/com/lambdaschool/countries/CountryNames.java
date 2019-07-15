@@ -12,13 +12,15 @@ public class CountryNames extends AbstractCountries{
 
     @RequestMapping("/all")
     public ArrayList<Country> getAll(){
-        ArrayList<Country> temp = list.getCountryList();
+        ArrayList<Country> temp=list.getCountryList();
         temp.sort((Country c1, Country c2)-> c1.getName().compareToIgnoreCase(c2.getName()));
+        System.out.println("okay");
         return temp;
     }
     @RequestMapping("/start/{letter}")
     public ArrayList<Country> getNameStart(@PathVariable String letter){
         ArrayList<Country> temp=list.getCountryList();
+
         temp.removeIf(c-> !c.getName().substring(0,1).equalsIgnoreCase(letter));
         return temp;
     }
@@ -26,6 +28,7 @@ public class CountryNames extends AbstractCountries{
     @RequestMapping("/size/{number}")
     public ArrayList<Country> getNameSize(@PathVariable int number){
         ArrayList<Country> temp=list.getCountryList();
+
         temp.removeIf(c->c.getName().length()<number);
         return temp;
     }

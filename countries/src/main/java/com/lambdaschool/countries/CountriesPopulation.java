@@ -19,6 +19,7 @@ public class CountriesPopulation extends AbstractCountries {
     @RequestMapping("/min")
     public Country getMin(){
         ArrayList<Country> temp=list.getCountryList();
+
         temp.sort((Country c1, Country c2)->(int)(c1.getPopulation()-c2.getPopulation()));
         return temp.get(0);
     }

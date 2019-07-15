@@ -212,6 +212,6 @@ public class CountryList {
     }
 
     public ArrayList<Country> getCountryList() {
-        return countryList;
+        return new ArrayList<>(countryList);
     }
 }
